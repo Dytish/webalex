@@ -1,15 +1,19 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <telegram/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import telegram from './components/telegram.vue'
+telegram
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    telegram
   }
 }
 </script>

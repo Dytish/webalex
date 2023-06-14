@@ -1,10 +1,16 @@
 <template>
-
+  <div class="v-telegram">
+    <v-slider/>
+  </div>
 </template>
 
 <script>
+import vSlider from './v-slider.vue'
 export default {
-  name: 'telegram',
+  name: 'vTelegram',
+  components: {
+    vSlider
+  },
   props: {
     msg: String
   }

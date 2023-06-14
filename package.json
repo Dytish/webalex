@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "swiper": "^9.4.1",
+    "v-show-slide": "^1.8.3",
+    "v-slide": "^2.0.1",
     "vue": "^3.2.13"
   },
   "devDependencies": {

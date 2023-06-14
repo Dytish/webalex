@@ -9,7 +9,8 @@
         }"
         :modules="modules"
         class="mySwiper">
-            <swiper-slide  v-for="(foto, index) in fotos">
+            <swiper-slide  v-for="(foto, index) in fotos"
+                v-bind:key="index">
                 <!-- <p>{{ foto }}</p> -->
                 <img  :src= " require('../assets/foto/' + foto) " alt="non">
             </swiper-slide>

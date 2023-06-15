@@ -10,22 +10,24 @@
   body {
     background: #eee;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     color: #000;
     margin: 0;
     padding: 0;
   }
-  
-  .swiper {
-    width: 70vw;
-    height: 100%;
+  .mySwiper{
+    z-index:2;
   }
-  
+  .v-slider{
+    position: relative;
+    background-color: #fff;
+    width: 80vw;
+    height: 100%;
+    margin: auto;
+  }
+
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
-    background: #fff;
-  
     /* Center slide text vertically */
     display: flex;
     justify-content: center;
@@ -33,9 +35,44 @@
   }
   
   .swiper-slide img {
+    width: 80vw; /* width of container */
+    height: 50vh; /* height of container */
+    object-fit: cover;
     display: block;
+  }
+  .info {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 10vh;
+  }
+
+  .info h1{
+    margin: 0px;
+  }
+  .info p{
+    margin: 0px;
+  }
+  .info_more{
+    position: absolute;
+    top: 0%;
+    right: 5%;
+  }
+
+  .v-slider-info{
+    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-color: #fff;
   }
-  
+
+  .show{
+    /* position: relative; */
+    z-index: 5;
+  }
+  .style-slider{
+    border-radius: 10%;
+  }
+  button{
+    position: absolute;
+  }

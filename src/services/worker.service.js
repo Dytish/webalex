@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8089/api/';
+const API_URL = 'https://185.195.24.47:8087/api/';
 
 class WorkerService {
-    getWorkers() {
+  getUsers() {
         return axios
-          .post(API_URL + 'worker/listWorkers', {
+          .post(API_URL + 'test/2', {
           },
           ).then(response => {
             if (response.data.accessToken) {
-              localStorage.setItem('getWorkers', JSON.stringify(response.data));
+              localStorage.setItem('getUsers', JSON.stringify(response.data));
             }
             return response.data;
             });

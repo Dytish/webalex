@@ -1,11 +1,14 @@
 <template>
-    <div  class="v-slider style-slider">
+  <!-- v-if="showInfo === false" -->
+    <div  class="v-slider style-slider" >
         <v-slider-info
         :showInfo="showInfo"
-        :info="fotos[activeIndex]"
+        :info="workers[activeIndex]"
+        :Tg="Tg"
+        :onChoose="onChoose"
         @showInformation="showInformation"/>
         <swiper 
-            
+            :initialSlide = activeIndex
             :freeMode= "{
               enabled: true, 
               sticky: true 
@@ -23,12 +26,14 @@
             @transitionEnd="onSlideNoStop"
             @slideChange="onSlideChange"
             @doubleClick="onDoubleClick"
-            class="mySwiper style-slider">
-            <swiper-slide  v-for="(foto, index) in fotos"
+            class="mySwiper style-slider"
+            v-if="showInfo === false">
+            <swiper-slide  v-for="(foto, index) in workers"
                 v-bind:key="index">
                 <!-- <p>{{ foto }}</p> -->
                 <div class="slider">
-                <img class=" style-slider" :src= " require('../assets/foto/' + foto.img) " alt="non">
+                  <img class=" style-slider" :src= "foto.img" alt="non">
+                <!-- <img class=" style-slider" :src= " require('../assets/foto/' + foto.img) " alt="non"> -->
                 <div class="info">
                     <h1>{{ foto.title }}</h1>
                     <p> {{ foto.previe }} </p>
@@ -85,14 +90,19 @@ export default {
   },
   props: {
     onChoose: Boolean,
+    workers: Object,
+    Tg:{
+        type: Object,
+        default: () => {}
+    },
   },
   setup() {
     const onDoubleClick = () => {
-        console.log('onDoubleClick');
-        console.log(event);
+        // console.log('onDoubleClick');
+        // console.log(event);
     };
     const onSlideChange = () => {
-        console.log('slide change');
+        // console.log('slide change');
         // swiper.slideTo( индекс , скорость , runCallbacks )
     };
     return {
@@ -101,23 +111,24 @@ export default {
       onDoubleClick,
     };
   },
+  beforeCreate(){
+    // console.log(this.workers)
+  },
   methods:{
     showInformation(showInfo){
         this.showInfo = showInfo
     },
     onSlideNoStop(swiper){
-        console.log(swiper.realIndex);
+        // console.log(swiper.realIndex);
         this.activeIndex = swiper.realIndex;
         // swiper.slideTo( индекс , скорость , runCallbacks )
     },
-    // onChoose(){
-    //     console.log(this.activeIndex);
-    // },
   },
   watch:{
     onChoose(){
       if (this.onChoose == true){
-        console.log(this.activeIndex);
+        console.log(this.workers[this.activeIndex].title);
+        this.Tg.sendData(this.workers[this.activeIndex].title);
       }
     },
   },

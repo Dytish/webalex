@@ -1,0 +1,182 @@
+#app {
+    height: 100%;
+  }
+  html,
+  body {
+    position: relative;
+    height: 100%;
+  }
+  
+  body {
+    background: var(--tg-theme-bg-color);
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: var(--tg-theme-text-color);
+    margin: 0;
+    padding: 0;
+  }
+  /* .v-telegram{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  } */
+  .mySwiper{
+    /* z-index:2; */
+    top: 0; left: 0; bottom: 0; right: 0;
+    transition: .3s all;
+  }
+  .v-slider{
+    position: absolute;
+    /* полупрозрачно сделать  */
+    /* background-color: #fff; */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide {
+    height: 100%;
+    top: 0; left: 0; bottom: 0; right: 0;
+    text-align: centeride;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    width: 100vw; 
+    /* height: 50vh;  */
+    object-fit: cover;
+    display: block;
+  }
+  .slider{
+    height: 100%;
+  }
+  .info {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .info h1{
+    margin: 0px;
+  }
+  .info p{
+    color: var(--tg-theme-hint-color);
+    margin: 0px;
+  }
+  .info_more{
+    position: absolute;
+    top: 0%;
+    right: 5%;
+    width: 10vw;
+    height: 10vw;
+    stroke: #1d49aa;
+  }
+  .dop-info{
+    text-align: justify;
+    margin: auto 5%;
+  }
+  /* .show{
+    position: relative; */
+    /* z-index: 5;
+  } */
+  .style-slider{
+    border-radius: 5vw;
+  }
+.v-slider-info{
+  position: absolute;
+  transition: .3s all;
+  width: 100%;
+  height: 100%;
+  /* background-color: #fff; */
+}
+.v-slider-info .info{
+  margin:  auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.v-slider-info img{
+  width: 70vw; /* width of container */
+  margin: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.hr-shelf {
+	margin: 0% auto 5%;
+	padding: 0;
+	height: 3vh;
+	border: none;
+	border-bottom: 0.3vh solid #1f1209;
+	width: 100%;
+}
+
+.choose{
+  /* z-index:7; */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0%;
+  width: 100%;
+  height: 8vh;
+  /* margin:  auto 0%; */
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+/* .choose:hover {
+  background: #1d49aa;
+} */
+
+/* .choose:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+} */
+
+/* svg{
+  z-index:5;
+} */
+/* _____________________________АНИМАЦИЯ ________________*/
+.slider-enter-active,
+.slider-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.slider-enter-from{
+  opacity: 0;
+  transform: translateY(-10%);
+}
+.slider-leave-to {
+  opacity: 0;
+  transform: translateY(10%);
+}
+
+.info-enter-active,
+.info-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.info-enter-from {
+  opacity: 0;
+  transform: translateY(10%);
+}
+
+.info-leave-to {
+  opacity: 0;
+  transform: translateY(-10%);
+}

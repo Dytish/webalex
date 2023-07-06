@@ -1,11 +1,16 @@
 <template>
   <div class="v-telegram">
-    <v-slider
-    :workers="workers"
-    :Tg="tg"
-    :onChoose="onChoose" />
+    <main>
+      <v-slider
+      :workers="workers"
+      :Tg="tg"
+      :onChoose="onChoose" />
+    </main>
+    
     <!-- <img :src="img" alt="non"> -->
-    <button class="choose" @click="choose">choose</button>
+    <footer >
+      <button class="choose" @click="choose">choose</button>
+    </footer>
   </div>
 </template>
 
@@ -34,22 +39,22 @@ export default {
         // window.addEventListener('resize', this.handleResize);
         // this.handleResize();
         this.tg.expand();
-        this.tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
-        this.tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
-        this.tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
-        this.tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-        this.tg.MainButton.setParams({"color": "#143F6B"});
-        this.tg.MainButton.show();
-        this.tg.MainButton.offClick(function(){
-          this.tg.MainButton.textColor = "#F55353";
-          this.tg.sendData("some string that we need to send");
-        });
+        // this.tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
+        // this.tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
+        // this.tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
+        // this.tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
+        // this.tg.MainButton.setParams({"color": "#143F6B"});
+        // this.tg.MainButton.show();
+        // this.tg.MainButton.offClick(function(){
+        //   this.tg.MainButton.textColor = "#F55353";
+        //   this.tg.sendData("some string that we need to send");
+        // });
   },
   beforeCreate(){
-    this.$store.dispatch('getWorkers').then(() => {
-      this.workers = JSON.parse(localStorage.getItem  ("workers"));
-      this.loading = false;
-        })
+    // this.$store.dispatch('getWorkers').then(() => {
+    //   this.workers = JSON.parse(localStorage.getItem  ("workers"));
+    //   this.loading = false;
+    //     })
   },
   methods:{
     choose(){

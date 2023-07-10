@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend_dosug.entrypoints=https"
+      - "traefik.http.routers.frontend_dosug.rule=Host(`t.dosugrostov.site`)"
+      - "traefik.http.routers.frontend_dosug.tls=true"
+      - "traefik.http.routers.frontend_dosug.tls.certresolver=letsEncrypt"
+      - "traefik.http.routers.frontend_dosug.service=api@internal"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$i19de2hf$$3MObz5z3RGVKy806abL7k1"
+      - "traefik.http.routers.frontend_dosug.middlewares=traefik-auth"
+    ports:
+      - "88:88"
+    restart: always

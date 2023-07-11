@@ -13,5 +13,5 @@ services:
       - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$i19de2hf$$3MObz5z3RGVKy806abL7k1"
       - "traefik.http.routers.frontend_dosug.middlewares=traefik-auth"
     ports:
-      - "88:88"
+      - "8080:8080"
     restart: always

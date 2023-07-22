@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://185.195.24.47:8088/api/';
+const API_URL = 'https://api.dosugrostov.site/api/';
 
 class WorkerService {
   getUsers() {

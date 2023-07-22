@@ -3,14 +3,13 @@
     <main>
       <v-slider
       :workers="workers"
-      :Tg="tg"
-      :onChoose="onChoose" />
+      :Tg="tg" />
     </main>
     
     <!-- <img :src="img" alt="non"> -->
-    <footer >
+    <!-- <footer >
       <button class="choose" @click="choose">choose</button>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -23,7 +22,6 @@ export default {
   name: 'vTelegram',
   data () {
     return {
-      onChoose: false,
       img: null,
       workers: null,
       tg: window.Telegram.WebApp,
@@ -38,7 +36,7 @@ export default {
   created() {
         // window.addEventListener('resize', this.handleResize);
         // this.handleResize();
-        this.tg.expand();
+        // this.tg.expand();
         // this.tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
         // this.tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
         // this.tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
@@ -57,9 +55,9 @@ export default {
     //     })
   },
   methods:{
-    choose(){
-      this.onChoose = true
-    }
+    // choose(){
+    //   this.onChoose = true
+    // }
   }
 }
 </script>

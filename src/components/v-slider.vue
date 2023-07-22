@@ -5,7 +5,6 @@
         :showInfo="showInfo"
         :info="fotos[activeIndex]"
         :Tg="Tg"
-        :onChoose="onChoose"
         @showInformation="showInformation"
         v-if="showInfo"/>
         <swiper 
@@ -27,6 +26,7 @@
             @transitionEnd="onSlideNoStop"
             @slideChange="onSlideChange"
             @doubleClick="onDoubleClick"
+            
             class="mySwiper style-slider"
             v-if="showInfo === false">
             <swiper-slide  v-for="(foto, index) in fotos"
@@ -37,7 +37,7 @@
                 <div class="info">
                     <h1>{{ foto.title }}</h1>
                     <p> {{ foto.previe }} </p>
-                      <svg @click="showInfo=true"
+                      <svg @click="showInformation(true)"
                       viewBox="0 0 1024.00 1024.00"  
                       class="info_more " 
                       xmlns="http://www.w3.org/2000/svg"  
@@ -76,12 +76,13 @@ export default {
   name: 'vSlider',
   data () {
     return {
-      fotos: [{id: 0, img: 'color.png', title: 'Оксана', previe: '12вы', info: 'доп информация рррррр пропор рролор ллор ррр ы \n пропро uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuhhjhjkh jhjkhjh    hjjkhjk  hghjj jhhhhj hhhhhhh hhhhhj    ghjg  ghj ggjj jjj uiuhh hjhjkjhjh jjjjjjj jjjkkjjj kjj gf gggggg hhhgffb hhhh    ппппррпп'},
-              {id: 1, img: 'photo_2.jpg', title: 'Оля', previe: '11', info: 'доп информация 23'},
+      fotos: [{id: 0, img: 'color.png', title: 'Оксана', previe: '12вы', info: 'доп информация рррррр пропор рролор ллор ррр ы \n пропро uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuhhjhjkh jhjkhjh    hjjkhjk  hghjj jhhhhj hhhhhhh hhhhhj    ghjg  ghj ggjj jjj uiuhh hjhjkjhjh jjjjjjj jjjkkjjj kjj gf gggggg hhhgffb hhhh    ппппррпп', messege: {telegram: "https://t.me/BigCHguS", whathap: "https://t.me/Mi28df"}},
+              {id: 1, img: 'photo_2.jpg', title: 'Оля', previe: '11', info: 'доп информация 23', messege: {telegram: "https://t.me/BigCHguS", telegram1: "https://t.me/BigCHguS", telegram2: "https://t.me/BigCHguS"}},
               {id: 2, img: 'Рисунок1.jpg', title: 'Света', previe: '233', info: 'доп информация 342в'},
-              {id: 3, img: 'vershiny_uedinenie.jpg', title: 'Ира', previe: '12', info: 'доп информация 223а3'}],
+              {id: 3, img: 'vershiny_uedinenie.jpg', title: 'Ира', previe: '12', info: 'доп информация 223а3', messege: { whathap: "https://t.me/Mi28df"}}],
       showInfo :false,
       activeIndex :0,
+      onChoose: false,
     }
   },
   components: {
@@ -90,7 +91,6 @@ export default {
     vSliderInfo,
   },
   props: {
-    onChoose: Boolean,
     workers: {
         type: Object,
         default: () => {}
@@ -129,12 +129,12 @@ export default {
     },
   },
   watch:{
-    onChoose(){
-      if (this.onChoose == true){
-        console.log(this.fotos[this.activeIndex].title);
-        this.Tg.sendData(this.fotos[this.activeIndex].title);
-      }
-    },
+    // onChoose(){
+    //   if (this.onChoose == true){
+    //     console.log(this.fotos[this.activeIndex].title);
+    //     this.Tg.sendData(this.fotos[this.activeIndex].title);
+    //   }
+    // },
   },
 };
 </script>

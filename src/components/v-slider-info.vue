@@ -3,8 +3,9 @@
     <div  class="v-slider-info">
       
       <div class="slider" >
-        <img class=" style-slider" :src= " require('../assets/foto/' + info.img) " alt="non">
-          <!-- <img class=" style-slider" :src= "info.img" alt="non"> -->
+        <Transition name="info_img">
+        <img v-if="showDopInfo" class=" style-slider" :src= " require('../assets/foto/' + info.img) " alt="non">
+        </Transition><!-- <img class=" style-slider" :src= "info.img" alt="non"> -->
         <div class="info">
           <div class="dop-info">
           <h1>{{ info.title }}</h1>
@@ -13,10 +14,15 @@
           <Transition name="info">
           <div class="dop-info"
           v-if="showDopInfo">
-            <hr class="hr-shelf">
+            <!-- <hr class="hr-shelf"> -->
             <a href="@Mi28df">dsadasdas</a>
             <p> {{ info.info }}</p>
-            <a href="https://t.me/Mi28df">dsadasdas</a>
+            <div class="messege" >
+                <a class="button shine" v-for="(value, key) in info.messege" 
+                :key="key"
+                :href="value"> {{ key }} </a>
+              
+            </div>
           </div>
         </Transition>
           <svg @click="showInformation(!showInfo)"

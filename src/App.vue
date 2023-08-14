@@ -1,5 +1,7 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <!-- <img alt="Vue logo" :src= "require('../pkg/images/' + img) " > -->
+  <!-- <img alt="Vue logo" :src= "require('./pkg/images/' + img) " > -->
+  <!-- <img alt="Vue logo" :src= "require('./' + img)" > -->
   <v-telegram/>
 </template>
 
@@ -10,7 +12,12 @@ export default {
   name: 'App',
   components: {
     vTelegram
+  },
+  data () {
+  return {
+    img: "logo.png"
   }
+},
 }
 </script>
 

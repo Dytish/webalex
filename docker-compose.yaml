@@ -1,4 +1,64 @@
 
+# version: "3.4"
+
+# services:
+#   frontend:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     labels:
+#       - "traefik.enable=true"
+#       - "traefik.http.routers.frontend_dosug.entrypoints=https"
+#       - "traefik.http.routers.frontend_dosug.rule=Host(`dosugrostov.site`)"
+#       - "traefik.http.routers.frontend_dosug.tls=true"
+#       - "traefik.http.routers.frontend_dosug.tls.certresolver=letsEncrypt"
+#     networks:
+#       - web
+#     ports:
+#       - "8080:8080"
+#     volumes:
+#        - .:/app
+#        - /app/node_modules
+#        - ./pkg/images/:/app/pkg/images
+#     restart: always
+
+# networks:
+#   web:
+#     external: true
+
+
+
+# version: "3.4"
+
+# services:
+#   frontend:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     labels:
+#       - "traefik.enable=true"
+#       - "traefik.http.routers.frontend_dosug.entrypoints=https"
+#       - "traefik.http.routers.frontend_dosug.rule=Host(`dosugrostov.site`)"
+#       - "traefik.http.routers.frontend_dosug.tls=true"
+#       - "traefik.http.routers.frontend_dosug.tls.certresolver=letsEncrypt"
+#     networks:
+#       - web
+#     ports:
+#       - "8080:8080"
+#     volumes:
+#       - '.:/app'
+#       - '/app/node_modules'
+#       - '../pkg/images/:/app/pkg/images/'
+#     restart: always
+
+# networks:
+#   web:
+#     external: true
+
+
+
+
+
 version: "3.4"
 
 services:
@@ -14,10 +74,14 @@ services:
       - "traefik.http.routers.frontend_dosug.tls.certresolver=letsEncrypt"
     networks:
       - web
+    # volumes:
+    # - "../pkg/images/:/app/pkg/images/"
+      # - '.:/app'
+      # - '/app/node_modules'
     ports:
-      - "8080:8080"
-    restart: always
-
+      - '8080:8080'
 networks:
   web:
     external: true
+  
+

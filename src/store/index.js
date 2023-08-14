@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import WorkerService from '../services/worker.service';
+import QuestionnaireService from '../services/questionnaire.service';
 
 const initialState = {
     worker: {
@@ -14,13 +14,13 @@ const store = createStore({
     namespaced: true,
     state: initialState,
     actions: {
-        getWorkers() {
-            return WorkerService.getUsers().then(workers => {
-                if(workers.success == true){
-                  localStorage.setItem('workers', JSON.stringify(workers.res));
+      getQuestionnaires() {
+            return QuestionnaireService.getQuestionnaires().then(questionnaires => {
+                if(questionnaires.success == true){
+                  localStorage.setItem('questionnaires', JSON.stringify(questionnaires.res));
                   // console.log(localStorage.workers)
                   // commit('editBot', bot.res);
-                  return Promise.resolve(workers);
+                  return Promise.resolve(questionnaires);
                 }
               }
               ).catch(error => {

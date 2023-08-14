@@ -1,8 +1,10 @@
 <template>
-  <div class="v-telegram">
+  <div class="v-telegram"  >
+    <!-- , filter: 'blur(10px)'  -->
+    
     <main>
       <v-slider
-      :workers="workers"
+      :questionnaires="questionnaires"
       :Tg="tg" />
     </main>
     
@@ -22,22 +24,19 @@ export default {
   name: 'vTelegram',
   data () {
     return {
-      img: null,
-      workers: null,
+      questionnaires: null,
       tg: window.Telegram.WebApp,
     }
   },
   components: {
     vSlider
   },
-  props: {
-    msg: String
-  },
   created() {
         // window.addEventListener('resize', this.handleResize);
         // this.handleResize();
-        // this.tg.expand();
-        // this.tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
+        this.tg.expand();
+        console.log(this.questionnaires);
+        // this.tg.MainButton.text  = "Changed Text"; //изменяем текст кнопки 
         // this.tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
         // this.tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
         // this.tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
@@ -49,10 +48,10 @@ export default {
         // });
   },
   beforeCreate(){
-    // this.$store.dispatch('getWorkers').then(() => {
-    //   this.workers = JSON.parse(localStorage.getItem  ("workers"));
-    //   this.loading = false;
-    //     })
+    this.$store.dispatch('getQuestionnaires').then(() => {
+      this.questionnaires = JSON.parse(localStorage.getItem  ("questionnaires"));
+      this.loading = false;
+        })
   },
   methods:{
     // choose(){

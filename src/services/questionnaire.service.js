@@ -2,18 +2,18 @@ import axios from 'axios';
 
 const API_URL = 'https://api.dosugrostov.site/api/';
 
-class WorkerService {
-  getUsers() {
+class QuestionnaireService {
+  getQuestionnaires() {
         return axios
           .post(API_URL + 'test/2', {
           },
           ).then(response => {
             if (response.data.accessToken) {
-              localStorage.setItem('getUsers', JSON.stringify(response.data));
+              localStorage.setItem('getQuestionnaires', JSON.stringify(response.data));
             }
             return response.data;
             });
       }
 }
 
-export default new WorkerService();
+export default new QuestionnaireService();

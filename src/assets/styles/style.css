@@ -110,6 +110,41 @@ footer{
   /* width: 100%; */
   filter: blur(6px);
 }
+.swiper-button-prev {
+  background-image: url("../foto/moreLeft.svg");
+}
+.swiper-button-next {
+  background-image: url("../foto/moreRight.svg");
+}
+.swiper-button-next::after,.swiper-button-prev::after {
+  content: "";
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .swiper-button-next:hover,.swiper-button-prev:hover {
+    background-size: 14vw;
+  }
+}
+@media(hover: none) and (pointer: coarse) {
+  .swiper-button-next:active,.swiper-button-prev:active {
+    background-size: 14vw;
+  }
+}
+.swiper-button-next,
+.swiper-button-prev {
+  /* background-color: white; */
+  color: #1d49aa;
+  stroke: #1d49aa;
+  
+  background-position: center;
+  background-size: 12vw;
+  background-repeat: no-repeat;
+  padding: 5% 7%;
+  /* border-radius: 100%; */
+  /* border: 2px solid black; */
+  /* color: red; */
+}
+
 
 .slider-img{
   text-align: center;
@@ -194,15 +229,19 @@ video {
   padding: 4vw 5vw;
 }
 .messege{
-  margin: opx 3%;
+  margin: 3% 3%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
 .getContactsMessege{
-  display: inline-block;
   justify-content: center;
+}
+.getContactsMessege a.button{
+  border-radius: 2vh;
+  padding: 4vw 5vw;
+  width: 100%;
 }
 a.button.shine {
     background-image: linear-gradient(270deg, rgba(100, 181, 239, 0) 48.44%, #64b5ef 75.52%, rgba(100, 181, 239, 0) 100%);

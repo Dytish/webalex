@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "core-js": "^3.8.3",
+    "core-js": "^3.32.0",
+    "crypto-js": "^4.1.1",
     "swiper": "^9.4.1",
     "v-show-slide": "^1.8.3",
     "v-slide": "^2.0.1",
     "vue": "^3.2.13",
+    "vue-core-video-player": "^0.2.0",
+    "vue-router": "^4.2.4",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

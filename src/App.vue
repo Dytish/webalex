@@ -1,21 +1,17 @@
 <template>
-  <!-- <img alt="Vue logo" :src= "require('../pkg/images/' + img) " > -->
-  <!-- <img alt="Vue logo" :src= "require('./pkg/images/' + img) " > -->
-  <!-- <img alt="Vue logo" :src= "require('./' + img)" > -->
-  <v-telegram/>
+  <div id="app">
+    <router-view/>
+  </div>
 </template>
 
 <script>
-import vTelegram from './components/v-telegram.vue'
 
 export default {
   name: 'App',
   components: {
-    vTelegram
   },
   data () {
   return {
-    img: "logo.png"
   }
 },
 }

@@ -14,15 +14,15 @@
             }" -->
         <swiper 
             :initialSlide = activeIndex
-            :loop='true'
+            :loop= "true"
             :slidesPerView="1"
             :spaceBetween="30" 
             :pagination="{
                 dynamicBullets: true,
                 clickable: true,
             }"
-            :navigation="true"
-            :modules="modules" 
+            :navigation= "true"
+            :modules= "modules" 
     
             @transitionEnd="onSlideNoStop"
             @slideChange="onSlideChange"
@@ -35,39 +35,31 @@
                 <div class="slider">
                   <!-- :poster="require('../../pkg/images/vigeoOff.jpg') " -->
                     <!-- <img  :src= "foto.img" alt="non"> -->
-                    
-                    <video v-if="questionnaire.images[0].split('.').pop() == 'mp4'" 
-                    tabindex="-1" class="style-slider slider-img" 
-                    data-no-fullscreen="true" 
-                    controlslist="nodownload" 
-                    :src="require('../../pkg/images/' + questionnaire.images[0]) " loop="">
-                    </video>
-                  <!-- <video v-if="questionnaire.images[0].split('.').pop() == 'mp4'" 
-                  class=" style-slider slider-img" 
-                  :src= "require('../../pkg/images/' + questionnaire.images[0]) " type="video/webm" 
-                  controlslist="nodownload" data-no-fullscreen="true"
-                  loop
-                  controls></video> -->
+
+                  <video v-if="questionnaire.images[0].name.split('.').pop() == 'webm'"
+                  class="style-slider slider-img"
+                  controls loop
+                  :poster="require('../../pkg/images/vigeoOff.jpg')"
+                  @canplay="updatePaused(index, $event)" @playing="updatePaused(index, $event)" 
+                  >
+                      <source :src=questionnaire.images[0].url type="video/webm" />
+                  </video>
                   <img v-else
-                  class=" style-slider slider-img" :src= "require('../../pkg/images/' + questionnaire.images[0]) " alt="non">
-                  
+                  class=" style-slider slider-img" :src= questionnaire.images[0].url  alt="non">
+                  <!-- require('../../pkg/images/' + questionnaire.images1[0]) -->
                 <!-- <img class=" style-slider" :src= " require('../assets/foto/' + foto.img) " alt="non"> -->
-                <div class="info">
-                    <h1>{{ questionnaire.title }}</h1>
-                    <svg @click="showInformation(true)"
-                      viewBox="0 0 1024.00 1024.00"  
-                      class="info_more " 
-                      xmlns="http://www.w3.org/2000/svg"  
-                       stroke-width="102.4">
-                      <path  d="M478.312 644.16c24.38 26.901 64.507 26.538 88.507-0.89l270.57-309.222c7.758-8.867 6.86-22.344-2.008-30.103-8.866-7.759-22.344-6.86-30.103 2.007L534.71 615.173c-7.202 8.231-17.541 8.325-24.782 0.335L229.14 305.674c-7.912-8.73-21.403-9.394-30.133-1.482s-9.394 21.403-1.482 30.134l280.786 309.833z" />
-                      </svg>
-                    <p v-html="questionnaire.previe"></p>
-                      
-                    
-                    <!-- <svg  class="info_more" @click="showInfo=true" >"../assets/foto/moreUp.svg" </svg> -->
-                    <!-- <object class="info_more" type="svg" data="../assets/foto/moreUp.svg" ></object> -->
-                    <!-- <p class="info_more" @click="showInfo=true">more</p> -->
-                </div>
+                  <div class="info">
+                      <h1>{{ questionnaire.title }}</h1>
+                      <svg @click="showInformation(true)"
+                        viewBox="0 0 1024.00 1024.00"  
+                        class="info_more " 
+                        xmlns="http://www.w3.org/2000/svg"  
+                        stroke-width="102.4">
+                        <path  d="M478.312 644.16c24.38 26.901 64.507 26.538 88.507-0.89l270.57-309.222c7.758-8.867 6.86-22.344-2.008-30.103-8.866-7.759-22.344-6.86-30.103 2.007L534.71 615.173c-7.202 8.231-17.541 8.325-24.782 0.335L229.14 305.674c-7.912-8.73-21.403-9.394-30.133-1.482s-9.394 21.403-1.482 30.134l280.786 309.833z" />
+                        </svg>
+                      <p v-html="questionnaire.previe"></p>
+                        
+                  </div>
                 </div>
             </swiper-slide>
         </swiper>
@@ -76,6 +68,7 @@
 </template>
 
 <script>
+
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 // Import Swiper styles
@@ -86,6 +79,7 @@ import 'swiper/css/navigation';
 // пока что либо free-mode либо зацикленный слайд, настроить можно, 
 // но скорее всего придется прописывать перелистывание слайдов и устанавливать события
 // (муторно, и не факт что нужно)
+
 import '../assets/styles/style.css';
 
 // import required modules
@@ -96,13 +90,11 @@ export default {
   name: 'vSlider',
   data () {
     return {
-      fotos: [{id: 0, img: 'color.png', title: 'Оксана', previe: '12вы', info: 'доп информация рррррр пропор рролор ллор ррр ы \n пропро uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuuuuuuuuuusdfsdfs wsdsds sd      dsd sdsd   sdsd     sdfsd fsdf   sd fs  sd sd fsa fs fsf uuuuuuuuuhhjhjkh jhjkhjh    hjjkhjk  hghjj jhhhhj hhhhhhh hhhhhj    ghjg  ghj ggjj jjj uiuhh hjhjkjhjh jjjjjjj jjjkkjjj kjj gf gggggg hhhgffb hhhh    ппппррпп', messege: {telegram: "https://t.me/BigCHguS", whathap: "https://t.me/Mi28df"}},
-              {id: 1, img: 'photo_2.jpg', title: 'Оля', previe: '11', info: 'доп информация 23', messege: {telegram: "https://t.me/BigCHguS", telegram1: "https://t.me/BigCHguS", telegram2: "https://t.me/BigCHguS"}},
-              {id: 2, img: 'Рисунок1.jpg', title: 'Света', previe: '233', info: 'доп информация 342в'},
-              {id: 3, img: 'vershiny_uedinenie.jpg', title: 'Ира', previe: '12', info: 'доп информация 223а3', messege: { whathap: "https://t.me/Mi28df"}}],
       showInfo :false,
-      activeIndex :0,
+      activeIndex : 0,
       onChoose: false,
+      videoElement: null,
+      paused: null
     }
   },
   components: {
@@ -135,10 +127,23 @@ export default {
       onDoubleClick,
     };
   },
+  computed:{
+    swiper() {
+      return this.$refs.Swiper.swiper
+    }
+  },
+  mounted() {
+    // console.log(this);
+    // console.log('swiper', this.swiper);
+  },
   beforeCreate(){
     // console.log(this.workers)
   },
   methods:{
+    updatePaused(index, event) {
+      this.videoElement = event.target;
+      this.paused = index;
+    },
     showInformation(showInfo){
         this.showInfo = showInfo
     },
@@ -147,10 +152,20 @@ export default {
         if ( !isNaN(swiper.realIndex)){
           this.activeIndex = swiper.realIndex;
         }
-        // swiper.slideTo( индекс , скорость , runCallbacks )
+        else{
+          swiper.realIndex = this.activeIndex;
+        }
+        // console.log(swiper.realIndex);
     },
   },
   watch:{
+    activeIndex(){
+      if (this.videoElement != null){
+        if (this.activeIndex != this.paused){
+        this.videoElement.pause();
+        }
+      }
+    },
     // onChoose(){
     //   if (this.onChoose == true){
     //     console.log(this.fotos[this.activeIndex].title);
@@ -159,6 +174,7 @@ export default {
     // },
   },
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

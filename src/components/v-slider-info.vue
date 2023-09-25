@@ -12,8 +12,10 @@
                 dynamicBullets: true,
                 clickable: true,
             }"
+            :navigation= "true"
             :modules="modules" 
 
+            @transitionEnd="onSlideNoStop"
             class="mySwiper style-slider">
             <swiper-slide  v-for="(foto, index) in info.images"
                 v-bind:key="index">
@@ -22,14 +24,16 @@
                    tabindex="-1" class="style-slider slider-img" controlslist="nodownload" :src= "require('../../pkg/images/' + foto) " style="width: 446px; height: 251px; left: 0px; top: 0px;">
                   </video> -->
                   <!-- :poster="require('../../pkg/images/vigeoOff.jpg') " -->
-                  <video v-if="foto.split('.').pop() == 'mp4'" 
-                  class=" style-slider slider-img" 
-                  :src= "require('../../pkg/images/' + foto) " type="video/webm" 
-                  controlslist="nodownload"
-                  loop
-                  controls></video>
+                  <video v-if="foto.name.split('.').pop() == 'webm'"
+                  class="style-slider slider-img"
+                  controls loop
+                  :poster="require('../../pkg/images/vigeoOff.jpg')"
+                  @canplay="updatePaused(index, $event)" @playing="updatePaused(index, $event)" 
+                  >
+                      <source :src=foto.url type="video/webm" />
+                  </video>
                   <img v-else
-                  class=" style-slider slider-img" :src= "require('../../pkg/images/' + foto) " alt="non">
+                  class=" style-slider slider-img" :src=foto.url alt="non">
                   <div class="info">
                     <h1>{{ info.title }}</h1>
                     <svg @click="showInformation(!showInfo)"
@@ -53,11 +57,11 @@
           <!-- <hr class="hr-shelf"> -->
           <p v-html="info.info" ></p>
           <div class="messege" 
-          v-if="info.sub!=0">
-              <div class="infoMob"> 
-                <p v-html="info.infoMob"></p> 
+          v-if="Verification(info.sub)">
+              <div class="info_mob"> 
+                <p v-html="info.info_mob"></p> 
               </div>
-              <a class="button shine infoSocial" v-for="(value, key) in info.infoSocial" 
+              <a class="button shine infoSocial" v-for="(value, key) in JSON.parse(info.info_social)" 
               :key="key"
               :href="value"> {{ key }} </a>
           </div>
@@ -83,8 +87,9 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
 
-import { Pagination, FreeMode } from 'swiper';
+import { Pagination, FreeMode, Navigation } from 'swiper';
 
 export default {
 name: 'vSliderInfo',
@@ -93,6 +98,8 @@ data () {
     showDopInfo: false,
     img: "color.png",
     activeIndex :0,
+    videoElement: null,
+    paused: null
   }
 },
 components: {
@@ -113,12 +120,28 @@ setup() {
         // swiper.slideTo( индекс , скорость , runCallbacks )
     };
     return {
-      modules: [ Pagination, FreeMode],
+      modules: [ Pagination, FreeMode, Navigation],
       onSlideChange,
       onDoubleClick,
     };
 },
+created() {
+},
 methods:{
+  onSlideNoStop(swiper){
+        // console.log(swiper.realIndex);
+        if ( !isNaN(swiper.realIndex)){
+          this.activeIndex = swiper.realIndex;
+        }
+        else{
+          swiper.realIndex = this.activeIndex;
+        }
+        // console.log(swiper.realIndex);
+    },
+  updatePaused(index, event) {
+      this.videoElement = event.target;
+      this.paused = index;
+  },
   showInformation(showInfo){
     this.showDopInfo = showInfo;
     setTimeout(() => {
@@ -127,16 +150,36 @@ methods:{
     
   },
   Video(foto){
-    console.log(foto);
-    console.log(foto.split('.').pop());
+    // console.log(foto);
+    // console.log(foto.split('.').pop());
     const str = foto.split('.').pop()
     return str
+  },
+  Verification(sub){
+    let date_sub = new Date(sub);
+    let date = new Date();
+    if (date_sub < date){
+      // console.log(false);  
+      return false
+    }else{
+      // console.log(true);
+      return true
+    }
   }
 },
 mounted() {
   this.showDopInfo = this.showInfo;
 },
-
+watch:{
+    activeIndex(){
+      if (this.videoElement != null){
+        if (this.activeIndex != this.paused){
+        this.videoElement.pause();
+        }
+      }
+      
+    },
+  },
 };
 
 </script>

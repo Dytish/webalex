@@ -20,6 +20,7 @@ const store = createStore({
                   localStorage.setItem('questionnaires', JSON.stringify(questionnaires.res));
                   // console.log(localStorage.workers)
                   // commit('editBot', bot.res);
+                  
                   return Promise.resolve(questionnaires);
                 }
               }

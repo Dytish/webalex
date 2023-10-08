@@ -10,7 +10,7 @@ const routeInfos = [
         component : QuestionnairePage
     },
     {
-        path : "/adminQuestionnairePage",
+        path : "/adminQuestionnairePage/:id",
         name: 'adminQuestionnairePage',
         component : AdminQuestionnairePage
     }

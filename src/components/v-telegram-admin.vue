@@ -45,6 +45,10 @@ export default {
     return {
       quests: null,
       tg: window.Telegram.WebApp,
+      user: {
+        id_telegram: Number(this.$route.params['id']),
+        // 459082753
+      }
     }
   },
   
@@ -54,29 +58,30 @@ export default {
         // window.addEventListener('resize', this.handleResize);
         // this.handleResize();
         this.tg.expand();
-        // this.tg.MainButton.text  = "Changed Text"; //изменяем текст кнопки 
-        // this.tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
-        // this.tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
-        // this.tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-        // this.tg.MainButton.setParams({"color": "#143F6B"});
-        // this.tg.MainButton.show();
-        // this.tg.MainButton.offClick(function(){
-        //   this.tg.MainButton.textColor = "#F55353";
-        //   this.tg.sendData("some string that we need to send");
-        // });
+        this.$store.commit("editUser", this.user)
+        this.$store.dispatch('getQuestionnairesAdmin', this.user).then(() => {
+              this.loading = false
+              if(localStorage.getItem("success") == 'true'){
+                  localStorage.removeItem('success');
+              }
+          })
+        console.log(JSON.parse(localStorage.getItem ("questionnairesAdmin")));
+        this.quests = JSON.parse(localStorage.getItem  ("questionnairesAdmin"));
   },
   beforeCreate(){
-    this.$store.dispatch('getQuestionnaires').then(() => {
-      this.quests = JSON.parse(localStorage.getItem  ("questionnaires"));
-      this.loading = false;
-        })
+    // this.$store.dispatch('getQuestionnaires').then(() => {
+    //   this.quests = JSON.parse(localStorage.getItem  ("questionnaires"));
+    //   this.loading = false;
+    //     })
+    
   },
   methods:{
     Edit(questionnaire){
       console.log(questionnaire);
       let data = JSON.stringify(questionnaire);
+      
       console.log(data);
-      this.tg.sendData(data);
+      // this.tg.sendData(data);
     },
     Check(initData){
       let data = Object.fromEntries(new URLSearchParams(initData));

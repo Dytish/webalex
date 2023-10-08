@@ -8,9 +8,15 @@ class QuestionnaireService {
           .post(API_URL + 'test/2', {
           },
           ).then(response => {
-            if (response.data.accessToken) {
-              localStorage.setItem('getQuestionnaires', JSON.stringify(response.data));
-            }
+            return response.data;
+            });
+      }
+  getQuestionnairesAdmin(user) {
+        return axios
+          .post(API_URL + 'test/givQuest', {
+            id_telegram: user.id_telegram
+          },
+          ).then(response => {
             return response.data;
             });
       }
